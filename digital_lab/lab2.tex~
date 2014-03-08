@@ -1,0 +1,240 @@
+\documentclass[12 pt]{article}
+\usepackage[margin = 1.0in, letterpaper]{geometry}
+\usepackage{graphicx}
+\usepackage{amsfonts, amsmath}
+\usepackage{float}
+
+\begin{document}
+
+\title{The Digital Age, Fourier Transforms and Spectra}
+\author{Eduardo Herrera}
+
+\maketitle
+
+\begin{abstract} 
+It is crucial to sample at a rate such that one can resolve and
+characterize the incoming signal. It is shown that at the nyquist rate
+$v_{sig}=.5*v_{samp}$ one can resolve and use the detected signal, without the
+alternatives of getting false data or wasting too many resources in
+terms of memory which becomes costly. Power spectra
+across frequency are used to help differentiate between to signals
+when mixed together and hekp fiffrentiate between the mixed waves and
+`noise' made by them. 
+
+\end{abstract}
+
+\section{Introduction}
+In the larger scope of making important but slowly emerging dicoveries that could help
+mankind better know their place and role in the universe, we must amke
+use of our small-scale inventions.
+Utilization of small chips programmed to make incredibly fast computations that
+would not be practical for us to attempt by hand. Thanks to the wide variety
+of chips with storage and processing power today and in the future, we
+may be able to get to those grand discoveries faster. In the digital
+lab, code and knowledge of computer components lead to a proper
+understanding of digital sampling, Fourier Transforms (leading to power
+spectrums) and mixing, all with application to the radio astronomy
+field, especially when analyzing signals that could only be analyzed via
+radio astronomy. 
+
+\section{Week  One: Sampling}
+
+\subsection{Methods}
+For the first week of the lab,  we needed to take control of the pulsar
+and the oscillator and from there take samples at some $v_{sig}$ with
+some constant sample frequency of $v_{samp}$ which was chosen to be 10
+MHz. $v_{sig}$ was chosen so that it would increase in increments of
+.1$v_{samp}$ for nine trials. From there we labeled our data points for
+which the signal was sampled at, at time intervals set up by $v_{sig}$
+this was done to test the Nyquist sampling rate. 
+
+\subsection{Going to the Extremes}
+Before our data for $v_{sig}$, there should be a check on the extremes
+of Nyquist sampling, namely $v_{sig} = v_{samp}$ and
+$\frac{v_{sig}}{v_{samp}} = large$. In the latter case, when we come
+across this condition, our graph ends up looking like the figure below
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.4]{vsigovervsamplarge.png}
+\caption{The plot of $\frac{v_{sig}}{v_{samp}} = large$ for $v_{sig} =
+  30 MHz$ and $v_{samp} = 500 Hz$.}
+\label{signal equals the sampling rate}
+\end{figure}
+at this sampling rate, we see that since the ratio between the signal
+and the sample frequency is so large, the data points taken are not
+sufficient to recreate the wave because our sampling frequency is much
+too slow to catch up with the maximum frequency and so we are left
+unable to charecterize to above wave. 
+
+For the case of $v_{sig} = v_{samp}$ my plot for the data did not come
+out to a straight line as it was predicted it would, it is ommitted here
+since it was an error on part of the equipment that it did not work. The
+reason this plot would be a straight line is because the sampling
+frequency would only sample at the period of the incoming signal,
+resulting in just a horizontal line when connecting the dots, there is
+no wave to analyze. 
+\subsection{Nyquist Frequency}
+
+Now to demostrate an understanding of the Nyquist frequency, there is a
+graph below that gives the signal frequency in increments of .1 of the
+sample frequency, and of interest is the fifth graph.
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.4]{Nyquiststar.png}
+\caption{a series of plots demonstrating the declining effectives of
+  sampling when you stray below the nyquist rate (at least twice the
+  maximum frequency)}
+\label{Nyquiststar}
+\end{figure}
+Here, we see the Nyquist criterion at work for a sampling frequency of
+10 MHz, starting with the top left
+corner, we see that the wave is accurately represented since many points
+(represented by the starred data points) were able to be plotted along
+the line of the signal and thus we get an accurate representation of the
+wave. Looking at the top right plot we see now that the data points were
+plotted at larger intervals of time (we see less of a curve on th
+turning points of the signal), but overall, we can still characterize
+the signal. One important plot to note is the fifth plot taken right at
+the Nyquist sample rate. The reason the y-axis of this plot is different
+from the rest is that the pulsar sampler couldn't easily do the sampling
+at 10 Mhz, because of this, pulsar had to skip samples to simulate
+sampling at that frequency (it usually samples at 20 Mhz). Aside from
+these strange jump in the data, we see that at Nyquist sampling rate,
+the wave is barely resolved at that signal frequency. Now once we get
+past the fifth, we see that the next graphs look similar to the previous
+graphs we have looked at, although this may seem that the data points
+are still accurately representing the signal frequency, they aren't. The
+signal frquency is going through more cycles, and the data points can't
+accurately make a plot that represents that signal frquency. By the time
+we reach the ninth plot, the signal frequency undergoes many cycles and
+the data points were only able to record at a few points which
+definitely does not reproduce the graph. The reason Nyquist's criterion
+is preferred is because it is the best way to recreate an incoming
+signal using the least amount of computation power, you could make it
+more exact to the wavelength by making sure the sampling rate is higher
+than the signal rate but that takes up more time and resources on the
+computer than would be expcted since there are other devices that need
+computers to function, all simultaneously.
+
+\subsection{Power Spectrum}
+Here, the spectrum of the previous 9 plots was Fourier transformed
+ and then squared to get rid of complex numbers that were a product of
+ the imaginary number in the exponential, together with a frequency and
+ sample number, the plots now
+ look like
+ 
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.4]{DFTplots.png}
+\caption{The DFT plots of our previous Nyquist plots}
+\label{DFTplots}
+\end{figure}
+
+So these are the transfers to a power spectrum, and as we see, there are
+two spikes, the one to the right represents the real part of the sine
+wave while the second spike represents the imaginary part of the
+wave. The reason that they pop up, is from the afroementioned Fourier
+transform, the exponential term introduces a complex number which
+becomes negative when i is squared, and so hence, two spkies
+appear. There is also a pattern of the spikes getting further away from
+eachother until the Nyquist criterion and then come back together as
+ther start to violate that law. The place the spikes are at is
+prortional to $v_{sig}$, being a fraction of the sample frequency. 
+
+\subsection{Spectral Leakage}
+Spectral leakage is represented by the following graphs which have all
+been modified to show the leakage(by taking the log of the previous set
+of plots), shown as the fringes along the curve
+of the spikes. 
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.4]{DFTplotslog.png}
+\caption{the leakage power shown as the 'fringe' peaks}
+\label{DFTplotslog}
+\end{figure}
+This is the result of the signal in the time domain resulting in a
+convolution in the frequency domain. The small spikes that are seen are
+the leakage, showing up further away from the spectral peaks, those
+small spikes are not perfectly periodic in the Fast Fourier
+Transform. frequency bins are just the number of samples you decide to
+take over the sample frequency, here, there are two waves mixed
+together, these waves are periodic (being sine waves) and so when
+there's is a linear combination of them, within that bin one wave will
+fit in it while the other's wavelength will not fit within the bin and
+so a bit of it `leaks' into the next bin, and so that is what is seen in
+the above graph. 
+
+\subsection{Frequency Resolution}
+
+In regards to spectral resolution, it is defined as the siganl frequency
+over the number of data points you have. So, you could have the spikes
+be very close to gether, achieving very high resolution, but this takes
+alot of resources from the computer, slowing down your data collection
+time. We can't get infinite resolution because of limitations on our
+current hardware. To sample at rates good enough for our purposes, all
+we want is to stay near the Nyquist critereon,  or have a signal
+frequency smaller than the sample to get adequate results. 
+
+\section{Working with the ROACH}
+
+\subsection{Methods}
+During the course of this week of the lab, Isaac Domalgalski developed
+the code to take the data the rest of the group needed. All other work
+henceforth all data that was worked with came from his code. This report
+used and mainpulated that data. 
+
+\subsection{DSB Mixer Power Spectra}
+Having plotted the power spectrum of the sum and difference cases versus
+frequency we get this plot
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.4]{powerspectmixed.png}
+\caption{The power spectra for $\pm \delta v$.}
+\label{powerspectmixed}
+\end{figure}
+An interesting thing that we see in these spectra is that the middle
+`thick' line is actually two lines very close together which confirms
+the presence of two waves that been mixed together into one sine
+wave. Now, the upper sidebands refer to the bands (spikes) which are on
+the positive side of the x-axis(frequency); the real part of the sine wave. Whereas
+the lower sidebands refer to those on the negative x-axis; they
+correspond to an imaginary part of the sine wave. 
+
+We see the waveforms as pictured below,  and we will focus on the
+$v_{sig} = v_{lo} + \delta v$ From observations made that day, it did
+look like what was seen on the oscilloscope's trace.
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.4]{mixedsignals.png}
+\caption{the Wave form of both mixed signals}
+\label{mixedsignals}
+\end{figure}
+ Taking the Fourier
+Transform and zeroing out the sum frequency we then apply the inverse
+fourier transform on it and we retrieve a new signal
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.4]{fourierfiltering01.png}
+\caption{the original wave after zeroing and inverse fourier transforming}
+\label{fourierfiltering01}
+\end{figure}
+This new signal is $\delta v$ the difference of $v _{sig}$ and $v_{lo}$
+by zeroing out the sum after fourier transforming the waveform, we
+effectively destroyed the mixed wave. This new wave is the output of the
+mixer without the higher frequency part that was originally mixed in. 
+
+
+\subsection{Digital Mixing and Power Spectra}
+asdff I need to get this shit done
+\section{Coefficients and Digital Down Conversion}
+
+\subsection{Coefficients for the FIR Filter}
+
+\subsection{The Filter shape}
+
+
+\end{document}

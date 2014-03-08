@@ -1,0 +1,190 @@
+\documentclass[12 pt]{article} 
+\usepackage[margin = 1.0in, letterpaper]{geometry}
+\usepackage{graphicx}
+\usepackage{amsfonts, amsmath}
+\usepackage{float}
+
+\begin{document}
+
+\title{Lab Report 1: Impedence, Filters, Amplifiers, and Noise}
+\author{Eduardo Herrera}
+
+\maketitle
+
+\begin{abstract}
+In this lab, we were to use electronic components to create
+components to analyze and combine with appropriate values to get proper
+measurements of their effect on elctronic signals and how these effects
+could be used to build a circuit that could receive an fm transmission,
+and other uses in the latter weeks. At times there were missing or malfunctoning components
+that prevented some measurements from being taken, so in the case of
+missing components of certain values, we (meaning Marta
+and I, the others
+in our group were behind and so could not contribute) then used other
+values that were close to our calculated values to get closer to desired
+results. In following week, we then combined our fm receiver with other
+circuits to create an amplifier, with a greater knowledge of our circuit
+components. Our
+most important findings regarded the effect on signals by our circuits,
+namely filters, amplifiers, transistors,  etc. and what methods we used to find
+appropriate values. The first and second weeks of results are the most
+complete because the third week's supplies were malfunctioning, rendering
+data collection regarding John-Nyquist noise impossible, but we did manage to understand how to use
+code to get a better understanding of the central limit theorem and the
+use of larger data samples to get more accurate results. 
+\end{abstract}
+
+\section{Introduction}
+At this current stage, we have circuits,  which are a tool for
+transferring current from one place to another, in Radio Astronomy 
+
+\section{Methods}
+
+\subsection{The Voltage Divider}
+In this activity of the lab, we constructed the simplest of circuits to
+see how voltage can affected by two resistors(both of the same
+resistance,$ 820 \Omega$, as there were no $1000 \Omega$ resistors present) put in series. The effect
+is to have the incoming voltage be a fraction of what it originally was
+once it has passed through both resistors. When we measured the voltage
+out, we found the voltage to be 2.5 Volts, half of the incoming voltage
+of 5 Volts that was applied. 
+
+\subsection{Impedance}
+Impedance is defined as the amount of opposition a circuit has to a
+current when some DC voltage is applied. For resistors, it is fairly
+easy to calculate since impedance is resistance for a resistor. In
+general, impedance is the general form of Ohm's law
+\begin{equation}
+  \label{Ohm's}
+  V = IR,
+\end{equation}
+when extended for components like capacitors, and inductors. Impedance generalizes this law by presenting V and I (the Voltage and Current) as
+complex waveforms. In regards to the voltage
+divider above,  it would be a good idea to have a high impedance when
+you are applying a large DC voltage across a circuit, this is to prevent
+excess voltage from damaging componenets down the circuit. And as for
+lower applied volatges, it would be better to have low impedance,
+otherwise you would end up blocking too much of the current thus
+blocking any attempt to measure any relevant data you may want. 
+
+\subsection{Capacitor}
+\begin{equation}
+  \label{Current for Capacitors}
+  I = C \frac{dV}{dt}.
+\end{equation}
+The purpose of a capacitor is store energy in an electric field between
+the plates of the capacitor. This acts to eventually stop current from
+getting through if the voltage is constant, as seen in the equation \ref{Current for Capacitors}. But with and alternating current, a
+displacement of current occurs. In regards to the impedance that this
+contributes to a circuit, we use Z which is the relation for Voltage and
+Capacitance. For resistance it is simply Z=R=V/I. But for capacitors,  Z
+is given by 
+\begin{equation}
+  \label{impedance for Capacitors}
+  Z_c = \frac{1}{jwC}
+\end{equation}
+where j is is the imaginary unit, and w is the frequency.
+
+\subsection{RC Filters}
+There are two varieties of filters, the high-pass and low-pass filters,
+both of which make use of the imaginary, frequency-dependent impedences
+of the capacitors. Both types have a charecteristic frequency at which
+their frequency response evolves most rapidly, with a time-scale of
+R*C. The frequency response of the filters is given by the cutoff
+frequency at which a signal is attenuated at 3dB that frequency is
+\begin{equation}
+  \label{3dB frequency}
+  w_{3db} =\frac{1}{RC}
+\end{equation}
+
+The designs for both a low pass and high pass filter are as follows.
+\begin{figure}[H]
+\center
+\includegraphics[scale=.75]{Rc_lowpass.png}
+\caption{a diagram of a low pass filter}
+\label{low-pass filter}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=.6]{Rc_hipass.png}
+\caption{a diagram of a high pass filter}
+\label{high-pass filter}
+\end{figure}
+
+\subsection{LC filters}
+Inductors are resistant to changes in current as seen in 
+\begin{equation}
+  \label{inductance voltage}
+  V = L \frac{dI}{dt}
+\end{equation}
+where L is the inductance. when a current passes through, they store a
+portion of the energy in their magnetic field. they behave like wire if
+a current continuosly flows,  but once the current stops, the magnetic
+field collapses, and so the energy stored goes into pushing electrons in
+the direction they were flowing in. For a larger inductor, a larger
+volatage is induced when the field collapses. The impedance of an
+inductor is 
+\begin{equation}
+  \label{inductor impedance}
+  Z_L = jwL
+\end{equation}
+For an RLC bandpass filter, it's purpose is to not allow a band 
+
+\subsection{Diode}
+A diode has nearly zero resistance to current flow in one direction and
+bery high resistance in the other direction. Because of this, it serves
+to convert alternating current into direct current, including modulation
+(the varying a signal so that it may carry information in a waveform)
+here namely an incoming fm signal so that the signal can be read. The
+following is a table of data for a diode in series with a resistor,
+which changed values for every set, and with a varying Voltage applied
+across it.
+\begin{table}[H]
+\center
+\begin{tabular}{|c|c|}
+\hline
+R = 56 $\Omega$ & $V_{in} = 1.2 V$ \\
+\hline 
+R = 150 $\Omega$ & $V_{in} = 1.2V$ \\
+\hline
+                   & $2V_{in} = 2.7V$ \\
+\hline
+                   & $3V_{in} = 4.7V$ \\
+\hline
+R = 1200 $\Omega$ & $V_{in} = 1.6V$ \\
+\hline
+                    & $2V_{in} = 3.1V$ \\
+\hline
+                    & $3V_{in} = 5V$ \\
+\hline
+R = 2700 $\Omega$ & $2V_{in} = 3.1V$ \\
+\hline
+                    & $3V_{in} = 4.7V$ \\
+\hline
+                    & $4V_{in} = 7.3V$ \\
+\hline
+R = 1200 $\Omega$ & $3V_{in} = 5V$ \\
+\hline
+                    & $4V_{in} = 7.2V$ \\
+\hline
+                    & $5V_{in} = 9.3V$ \\
+\hline
+\end{tabular}
+\caption{Table showing the measured voltage across a diode with varying
+  Voltages and resistances}
+\label{tab.1}
+\end{table}
+
+
+\section{Discussion}
+
+
+
+\section{Conclusion}
+What I learned in boating school is......
+BLANKETY BLANKETY BLANK
+JUST THREE MORE WORDS!!!!!!!!!!!!!!!!
+
+
+\end{document}

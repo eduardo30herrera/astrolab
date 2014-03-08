@@ -1,0 +1,29 @@
+#This code is to show the DFTs of our data at the sample rate of 10 MHz
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+for i in np.arange (1,10):
+
+    N = 256
+
+    f = 10 ** 6
+    
+    x = np.load('signal-' +str(i) + '.npz')
+    
+    z = np.fft.fft(x['arr_1'])
+
+    z_2 = np.abs(z) ** 2
+
+    fqs = np.fft.fftfreq(N, 1/f)
+
+    plt.subplot(3,3,i)
+
+    plt.plot(fqs, z_2)
+    
+    plt.xlabel('frequency')
+    plt.ylabel('power')
+    plt.title('DFT plots')
+
+plt.tight_layout()
+plt.show()
