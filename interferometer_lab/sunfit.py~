@@ -1,0 +1,31 @@
+import numpy as np 
+import matplotlib.pyplot as plt
+#for this code, we will attempt to use the Fringe amplitude equation to obtain a best fit line for the sun
+#all angles will be treated as radians in this code
+f = np.load('sun-4_3_2014-22.npz')
+
+x = f['lst']-f['ra']
+y = f['volts']
+
+#A = np.cos(2*np.pi*v*t) these (A&B) won't be used because they are what we are fitting for!
+#B = np.sin(2*np.pi*v*t) see above comment ^
+#now we have to make a guess about what the value of (B/l)*np.cos(q) is as well as adopt a value for r (the right ascension (alpha))
+C = [2*np.pi*((B/l)*np.cos(q))]
+Y = y
+X = np.empty([29952.0, 2.0])
+X[:,0]= np.sin[C*np.sin(x)] 
+X[:,1] = np.cos[C*np.sin(x)]
+
+
+XX = np.dot(np.transpose(X),X)
+XY = np.dot(np.transpose(X),Y)
+XXI = np.linalg.inv(XX)
+a = np.dot(XXI,XY)
+YBAR = np.dot(X,a)
+DELY = Y - YBAR
+s_sq = mp.dot(np.transpose(DELY,DELY/(29952-2))
+
+plt.plot(f['volts'], YBAR)
+plt.plot(f['volts'], f['y'], '.')
+plt.plot(f['volts'], DELY, 'k.')
+plt.show()
