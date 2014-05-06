@@ -1,0 +1,18 @@
+\documentclass[12 pt]{article}
+\usepackage[margin = 1.0in, letterpaper]{geometry}
+\usepackage{graphicx}
+\usepackage{amsfonts, amsmath}
+\usepackage{float}
+
+\begin{document}
+
+\title{The Orion Super-Bubble}
+\author{Eduardo Herrera}
+
+\maketitle
+  
+\begin{abstract}
+
+
+
+\end{document}

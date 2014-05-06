@@ -1,0 +1,18 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.signal as sci
+#sci.fftconvolve
+data = np.loadtxt('img_grid_data.txt')
+x = data[0] ; y = data[1]
+img = np.zeros([1000,1000])
+
+for i in data:
+    img[i[1]*100, i[0]*100] = i[2]
+
+
+
+
+
+
+plt.imshow(img, origin='lower')
+plt.show()

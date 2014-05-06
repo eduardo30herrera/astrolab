@@ -1,0 +1,12 @@
+#The purpose of this code is to calibrating data from the leuschner observatory
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.constants as spc
+
+T_n = 100 #The temperature of the 
+g_0 = 
+g = g_0*
+
+
+
+x = np.load('.npz') # whatever the hell this data will be called 

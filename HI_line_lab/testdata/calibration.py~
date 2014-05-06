@@ -1,0 +1,33 @@
+#code run on our test data to do whatever the hell we needed to do to it, oh yeah, cleaning it.
+import numpy as np
+import matplotlib.pyplot as plt
+import readspec_mod as rsm
+
+
+n_off = rsm.readSpec('test_220_0_noise_off0.log') #noise on data
+n_on = rsm.readSpec('test_220_0_noise_on0.log') #noise off data
+#n_other = rsm.readSpec('') the last part of the data needed
+
+fc = 1272.4+150
+f_range = np.linspace(fc-6, fc+6, n_off.shape[0])
+
+
+
+def boxcar(array, radius):
+    n = 0
+    new = np.array([])
+    for i in array[radius, -radius]:
+        new = np.append(new, np.mean(array[n:n+2*radius]))
+        n = n+1
+    return new    
+
+#for i in 
+
+
+        
+plt.plot(f_range, new)
+#plt.plot(f_range, new2) #together we will see the data cleaned of those spikes, therefore making it easier to take data
+plt.title('title') #tentative titles
+plt.xlabel('x')
+plt.ylabel('y')
+#plt.show()
